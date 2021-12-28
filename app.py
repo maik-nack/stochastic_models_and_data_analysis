@@ -71,12 +71,10 @@ def main():
         df = df.append(dict(interval=interval.mid, e=interval.rad, y=i + 1, type='interval'), ignore_index=True)
     for subinterval in subintervals:
         df = df.append(dict(interval=subinterval.mid, e=subinterval.rad, y=0, type='subinterval'), ignore_index=True)
-    df = df.append(dict(interval=frequency_median.mid, e=frequency_median.rad, y=-1, type='frequency_median'),
+    df = df.append(dict(interval=frequency_median.mid, e=frequency_median.rad, y=-1, type='Me1'), ignore_index=True)
+    df = df.append(dict(interval=distance_median.mid, e=distance_median.rad, y=-2, type='Me2'), ignore_index=True)
+    df = df.append(dict(interval=distance_frequency_median.mid, e=distance_frequency_median.rad, y=-3, type='Me3'),
                    ignore_index=True)
-    df = df.append(dict(interval=distance_median.mid, e=distance_median.rad, y=-2, type='distance_median'),
-                   ignore_index=True)
-    df = df.append(dict(interval=distance_frequency_median.mid, e=distance_frequency_median.rad, y=-3,
-                        type='distance_frequency_median'), ignore_index=True)
     fig = px.scatter(df, x='interval', y='y', color='type', error_x='e')
     intervals_count = len(intervals)
     fig.add_trace(go.Scatter(x=[subintervals[0].min, subintervals[0].min], y=[-3, intervals_count], mode='lines',
