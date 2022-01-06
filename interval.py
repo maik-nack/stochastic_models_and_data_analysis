@@ -64,7 +64,8 @@ class Interval:
 
     def __contains__(self, item) -> bool:
         if isinstance(item, float) or isinstance(item, int):
-            return self.min <= item <= self.max
+            min_, max_ = self.min, self.max
+            return min_ <= item <= max_ or isclose(item, min_) or isclose(item, max_)
         raise TypeError(f"'in <Interval>' requires float or int as left operand, not {type(item).__name__}")
 
     def __repr__(self):

@@ -16,7 +16,7 @@ def read_intervals(filepath: str) -> List[Interval]:
 
 def generate_subintervals(intervals: List[Interval]) -> List[Interval]:
     bounds = [[interval.min, interval.max] for interval in intervals]
-    points = sorted(set(bound for interval in bounds for bound in interval))
+    points = sorted(bound for interval in bounds for bound in interval)
     i = 0
     for j, point in enumerate(islice(points, 1, len(points))):
         if not isclose(point, points[i]):
